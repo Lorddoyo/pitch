@@ -1,4 +1,5 @@
-export API_KEY=''
 export SECRET_KEY='lordoyo'
+export MAIL_USERNAME='johnkojo7777@gmail'
+export MAIL_PASSWORD='solarboy98'
 
 python3 manage.py runserver
