@@ -16,7 +16,7 @@ def index():
     title = 'Home - Pitch'
     allPitches = Pitch.query.all()
     zee =  Review.query.all()
-    return render_template( 'index.html', title = title, pitches = allPitches, zee = zee )
+    return render_template( 'index.html', title = title, pitches = allPitches, zee = zee, like = like, dislike = dislike )
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -100,6 +100,25 @@ def reviews(pitchy_id):
     reviews = Review.query.filter_by(pitch_id = pitch.id).order_by(Review.posted.desc())
 
     return render_template('reviews.html', pitch = pitch, reviews = reviews)
+
+@main.route('/reviews/<pitch_id>/like')
+@login_required
+def like(pitch_id):
+    pitch = Pitch.query.filter_by(id = pitch_id).first()
+    reviews = Review.query.filter_by(pitch_id = pitch.id).order_by(Review.posted.desc())
+    like = pitch.like()
+
+    return render_template('reviews.html', pitch = pitch, reviews = reviews, like = like)
+
+@main.route('/reviews/<pitch_id>/dislike')
+@login_required
+def dislike(pitch_id):
+    pitch = Pitch.query.filter_by(id = pitch_id).first()
+    reviews = Review.query.filter_by(pitch_id = pitch.id).order_by(Review.posted.desc())
+    dislike = pitch.dislike()
+
+    return render_template('reviews.html', pitch = pitch, reviews = reviews, dislike =dislike)
+
 
 @main.route('/pitch/review/new/<pitch_id>', methods = ['GET', 'POST'])
 @login_required

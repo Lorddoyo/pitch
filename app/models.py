@@ -48,6 +48,21 @@ class Pitch(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     reviews = db.relationship("Review", backref = "pitch", lazy = "dynamic")
     pitch_statement = db.Column(db.String())
+    likes = db.Column(db.Integer)
+    dislikes = db.Column(db.Integer)
+    vote_count = db.Column(db.Integer)
+
+    def like(self):
+        self.likes = self.likes + 1
+        self.vote_count = self.likes - self.dislikes
+        db.session.add(self)
+        db.session.commit()
+
+    def dislike(self):
+        self.dislikes = self.dislikes + 1
+        self.vote_count = self.likes - self.dislikes
+        db.session.add(self)
+        db.session.commit()
     
     def save_pitch(self):
         db.session.add(self)
