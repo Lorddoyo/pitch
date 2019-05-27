@@ -42,7 +42,7 @@ class Pitch(db.Model):
     __tablename__ = 'pitches'
 
     id = db.Column(db.Integer, primary_key = True)
-    category = db.Column(db.String(255))
+    category = db.Column(db.String(255))2019
     title = db.Column(db.String(255))
     posted = db.Column(db.DateTime,default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
@@ -70,6 +70,9 @@ class Pitch(db.Model):
 
 
 
+
+class PhotoProfile(db.Model):
+    __tablename__ = 'profile_photos'
 
 class PhotoProfile(db.Model):
     __tablename__ = 'profile_photos'
