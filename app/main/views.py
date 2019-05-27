@@ -16,7 +16,6 @@ def index():
     title = 'Home - Pitch'
     allPitches = Pitch.query.all()
     zee =  Review.query.all()
-
     return render_template( 'index.html', title = title, pitches = allPitches, zee = zee )
 
 @main.route('/user/<uname>')
@@ -81,7 +80,7 @@ def new_pitch(uname):
         db.session.add(pitch)
         db.session.commit()
 
-        return redirect(url_for('.profile',uname=user.username))
+        return redirect(url_for('main.profile',uname=user.username))
 
     return render_template('new_pitch.html',uname=uname, user = user, PitchForm = form)
 
@@ -94,10 +93,10 @@ def pitcher(category):
 
     return render_template("pitcher.html", pitches = pitches, category = category)
 
-@main.route('/reviews/<pitch_id>')
+@main.route('/reviews/<pitchy_id>')
 @login_required
-def reviews(pitch_id):
-    pitch = Pitch.query.filter_by(id = pitch_id).first()
+def reviews(pitchy_id):
+    pitch = Pitch.query.filter_by(id = pitchy_id).first()
     reviews = Review.query.filter_by(pitch_id = pitch.id).order_by(Review.posted.desc())
 
     return render_template('reviews.html', pitch = pitch, reviews = reviews)
@@ -110,7 +109,6 @@ def new_review(pitch_id):
     review = Review()
 
     if form.validate_on_submit():
-        review.pitch_review_title = form.title.data
         review.pitch_review = form.review.data
         review.pitch_id = pitch_id
         review.user_id = current_user.id
@@ -118,6 +116,6 @@ def new_review(pitch_id):
         db.session.add(review)
         db.session.commit()
 
-        return redirect(url_for('main.reviews', pitch_id=pitch.id ))
+        return redirect(url_for('main.reviews', pitchy_id=pitch.id ))
 
     return render_template('new_review.html', review_form = form)
