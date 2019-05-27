@@ -1,12 +1,20 @@
 {% extends 'base.html'%}
-<div class="container-fluid">
+{% block content %}
+<div class="container">
     <div class="row">
-        <div class="col-sm-4">
+        <div class="card">
+            <div class="card-header">{{pitch.title}}</div>
+            <div class="card-body">{{pitch.pitch_statement}}</div>
+            <div class="card-footer"></div>
+        </div>
+        {% for review in reviews %}
+        <div class="col-sm-12">
                 <img src="{{review.image_path}}" class="img-responsive">
             <div class="col-sm-8">
-                {{format_review|safe}}
+                {{review.pitch_review}}
             </div>
         </div>
+        {% endfor %}
     </div>
 </div>
 {%endblock%}
