@@ -11,7 +11,7 @@ def index():
     '''
     View root page function that returns the index page 
     '''
-
+    
     #Getting popular movi
     title = 'Home - Pitch'
     allPitches = Pitch.query.all()
