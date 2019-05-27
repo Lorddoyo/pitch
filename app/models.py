@@ -70,10 +70,6 @@ class Pitch(db.Model):
 
 
 
-
-class PhotoProfile(db.Model):
-    __tablename__ = 'profile_photos'
-
 class PhotoProfile(db.Model):
     __tablename__ = 'profile_photos'
 
