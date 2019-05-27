@@ -15,7 +15,7 @@ class Config:
     MAIL_PORT = 587
     MAIL_USE_TLS = True
     MAIL_USERNAME = os.environ.get("johnkojo7777@gmail.com")
-    MAIL_PASSWORD = os.environ.get("solarboy98")
+    MAIL_PASSWORD = os.environ.get("soliderclone")
     SUBJECT_PREFIX = 'PITCH'
     SENDER_EMAIL = ('johnkojo7777@gmail.com')
     SQLALCHEMY_TRACK_MODIFICATIONS=False
